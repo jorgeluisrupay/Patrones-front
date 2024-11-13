@@ -4,11 +4,11 @@ import {
   ProductImage,
   ProductTitle,
 } from "../components/index";
+import { products } from "../data/product";
 import "../styles/custom-styles.css";
-import { useShoppingCart } from "../hooks/useShoppingCart";
 
 export const ShoppingPage = () => {
-  const { shoppingCart, onProductCountChange, products } = useShoppingCart();
+  const product = products[0];
 
   return (
     <div>
@@ -21,59 +21,46 @@ export const ShoppingPage = () => {
           flexWrap: "wrap",
         }}
       >
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            className="bg-dark text-white"
-            style={{
-              backgroundColor: "#70D1F8",
-            }}
-            onChange={onProductCountChange}
-            value={shoppingCart[product.id]?.count || 0}
-          >
-            <ProductImage
-              className="custom-image"
-              style={{
-                boxShadow: "10px 10px 10px rgba(0,0,0,0.2)",
-              }}
-            />
-            <ProductTitle title="" className="text-bold" />
-            <ProductButtons
-              className="custom-button"
-              style={{
-                display: "flex",
-                justifyContent: "end",
-              }}
-            />
-          </ProductCard>
-        ))}
-      </div>
-      <div className="shopping-cart">
-        {Object.values(shoppingCart).map((product, key) => (
-          <ProductCard
-            key={key}
-            product={product}
-            className="bg-dark text-white"
-            style={{
-              width: "100px",
-            }}
-            value={product.count}
-            onChange={onProductCountChange}
-          >
-            <ProductImage className="custom-image" />
-            <ProductButtons
-              className="custom-button"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            />
-          </ProductCard>
-        ))}
-      </div>
-      <div>
-        <code>{JSON.stringify(shoppingCart, null, 5)}</code>
+        <ProductCard
+          key={product.id}
+          product={product}
+          className="bg-dark text-white"
+          style={{
+            backgroundColor: "#70D1F8",
+          }}
+          initialValues={{
+            count: 4,
+            // maxCount: 6,
+          }}
+        >
+          {({ reset, count, increaseBy, isMaxCountReached, maxCount }) => (
+            <>
+              <ProductImage
+                className="custom-image"
+                style={{
+                  boxShadow: "10px 10px 10px rgba(0,0,0,0.2)",
+                }}
+              />
+              <ProductTitle title="" className="text-bold" />
+              <ProductButtons
+                className="custom-button"
+                style={{
+                  display: "flex",
+                  justifyContent: "end",
+                }}
+              />
+              <button onClick={reset}>Reset</button>
+              <button onClick={() => increaseBy(-2)}>-2</button>
+              {!isMaxCountReached && (
+                <button onClick={() => increaseBy(2)}>+2</button>
+              )}
+              <span>
+                {" "}
+                {count} - {maxCount}{" "}
+              </span>
+            </>
+          )}
+        </ProductCard>
       </div>
     </div>
   );
