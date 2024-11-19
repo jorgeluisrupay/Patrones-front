@@ -56,7 +56,7 @@ export const ShoppingPage = () => {
               )}
               <span>
                 {" "}
-                {count} - {maxCount}{" "}
+                {count} {maxCount && `${-maxCount}`}
               </span>
             </>
           )}
