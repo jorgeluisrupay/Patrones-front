@@ -1,0 +1,69 @@
+[
+  {
+    "type": "text",
+    "name": "firstName",
+    "placeholder": "Nombre",
+    "label": "First Name",
+    "value": "",
+    "validation": [
+      {
+        "type": "required"
+      },
+      {
+        "type": "minLength",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "type": "text",
+    "name": "lastName",
+    "placeholder": "Apellido",
+    "label": "Last Name",
+    "value": "",
+    "validation": [
+      {
+        "type": "required"
+      }
+    ]
+  },
+  {
+    "type": "email",
+    "name": "email",
+    "placeholder": "Correo",
+    "label": "Email",
+    "value": "",
+    "validation": [
+      {
+        "type": "required"
+      },
+      {
+        "type": "email"
+      }
+    ]
+  },
+  {
+    "type": "select",
+    "name": "favoriteGame",
+    "label": "Favorite Game",
+    "value": "",
+    "option": [
+      {
+        "name": "Overwath",
+        "id": 1
+      },
+      {
+        "name": "Metal gear",
+        "id": 2
+      },
+      {
+        "name": "Wukong",
+        "id": 3
+      },
+      {
+        "name": "Valorant",
+        "id": 4
+      }
+    ]
+  }
+]
